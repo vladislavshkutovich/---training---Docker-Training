@@ -13,8 +13,13 @@ RUN npm install
 # Копируем все оставшиеся элементы (чтобы не копировать node_modules каждый раз)
 COPY . .
 
+ENV PORT 4200
+
 # Задаем порт для localhost
-EXPOSE 3000
+EXPOSE $PORT
+
+# Задаем папку для складывания данных, которые не хотим проебать
+VOLUME [ "/app/data" ]
 
 # Запускаем файл app.js, основанный на node
 CMD ["node", "app.js"]
